@@ -2,6 +2,9 @@
 #include "RendererOpenGL.hpp"
 #include "VertexArrayObject.hpp"
 #include "VertexBufferObject.hpp"
+#include "ShaderObject.hpp"
+
+#include <algorithm>
 
 void RendererOpenGL::create_window()
 {
@@ -54,30 +57,43 @@ void RendererOpenGL::render()
     // tell OpenGL the area of the window to render in
     set_viewport();
 
-    VertexArrayObject vao;
-    vao.bind();
-
     const GLenum buffer_usage = GL_DYNAMIC_DRAW;
 
-    VertexBufferObject vbo(&m_vertices.front(), m_vertices.size(), buffer_usage);
+    ShaderObject shader("vertex_shader.glsl", "fragment_shader.glsl");
 
-    ElementBufferObject ebo(&m_indices.front(), m_indices.size(), buffer_usage);
+    // generate buffer objects for vertices
+    std::vector<GLuint> vertex_indices(m_vertices.size() / DIM);
 
-    vao.link_vertex_buffer(vbo, 0, DIM, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    // generate indices to use all vertices for rendering points
+    std::generate(vertex_indices.begin(),
+        vertex_indices.end(),
+        [n = 0]() mutable { return n++; });
 
-    vao.unbind();
-    vbo.unbind();
-    ebo.unbind();
+    VertexArrayObject vertices_vao;
+    vertices_vao.bind();
+
+    VertexBufferObject vertices_vbo(&m_vertices.front(), m_vertices.size() * sizeof(GLfloat), buffer_usage);
+
+    ElementBufferObject vertices_ebo(&vertex_indices.front(), vertex_indices.size() * sizeof(GLuint), buffer_usage);
+
+    vertices_vao.link_vertex_buffer(vertices_vbo, 0, DIM, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+    vertices_vao.unbind();
+    vertices_vbo.unbind();
+    vertices_ebo.unbind();
 
     while (!glfwWindowShouldClose(m_window))
     {
         // specify a default background color
-        glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+        glClearColor(0.f, 0.f, 0.f, 0.f);
 
         // clear the back buffer and apply the default background color
         glClear(GL_COLOR_BUFFER_BIT);
+        glPointSize(10.f);
 
-        vao.bind();
+        shader.activate();
+
+        vertices_vao.bind();
 
         // use this function when drawing elements with an EBO
         glDrawElements(GL_POINTS, m_vertices.size(), GL_UNSIGNED_INT, 0);
@@ -87,9 +103,9 @@ void RendererOpenGL::render()
         glfwPollEvents();
     }
 
-    vao.release();
-    vbo.release();
-    ebo.release();
+    vertices_vao.release();
+    vertices_vbo.release();
+    vertices_ebo.release();
 
     glfwDestroyWindow(m_window);
 

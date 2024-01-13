@@ -28,6 +28,7 @@ set(HEADER_FILES
     "VertexArrayObject.hpp"
     "RendererOpenGL.hpp"
     "GridGraphGenerator.hpp"
+    "ShaderObject.hpp"
 )
 
 set(SOURCE_FILES
@@ -38,6 +39,7 @@ set(SOURCE_FILES
     "VertexArrayObject.cpp"
     "RendererOpenGL.cpp"
     "GridGraphGenerator.cpp"
+    "ShaderObject.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
