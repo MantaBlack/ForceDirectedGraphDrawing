@@ -20,10 +20,21 @@ set(GLFW_LIB "D:/TOOLS/GLFW/lib/")
 set(HEADER_FILES
     ${GLAD_INCLUDE}/glad/glad.h
     ${GLFW_INCLUDE}/GLFW/glfw3.h
+    "IBufferObject.hpp"
+    "IRenderer.hpp"
+    "ElementBufferObject.hpp"
+    "VertexBufferObject.hpp"
+    "VertexArrayObject.hpp"
+    "RendererOpenGL.hpp"
 )
 
 set(SOURCE_FILES
     "main.cpp"
+    "glad.c"
+    "ElementBufferObject.cpp"
+    "VertexBufferObject.cpp"
+    "VertexArrayObject.cpp"
+    "RendererOpenGL.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
