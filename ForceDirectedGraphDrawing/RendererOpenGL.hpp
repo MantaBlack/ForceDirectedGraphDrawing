@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IRenderer.hpp"
+#include "IGraphDrawer.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -21,6 +22,8 @@ private:
     std::vector<GLfloat> m_vertices;
     std::vector<GLuint> m_indices;
 
+    IGraphDrawer& m_graph_drawer;
+
     GLFWwindow* m_window;
 
     void create_window();
@@ -33,7 +36,8 @@ public:
         GLint lower_left_x,
         GLint lower_left_y,
         std::vector<GLfloat> vertices,
-        std::vector<GLuint> indices)
+        std::vector<GLuint> indices,
+        IGraphDrawer& graph_drawer)
         : m_width(width),
         m_height(height),
         m_title(title),
@@ -41,6 +45,7 @@ public:
         m_lower_left_y(lower_left_y),
         m_vertices(vertices),
         m_indices(indices),
+        m_graph_drawer(graph_drawer),
         m_window(NULL)
     {}
 

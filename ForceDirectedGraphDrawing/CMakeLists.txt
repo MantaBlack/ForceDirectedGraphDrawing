@@ -29,6 +29,8 @@ set(HEADER_FILES
     "RendererOpenGL.hpp"
     "GridGraphGenerator.hpp"
     "ShaderObject.hpp"
+    "IGraphDrawer.hpp"
+    "SingleThreadGraphDrawer.hpp"
 )
 
 set(SOURCE_FILES
@@ -40,6 +42,7 @@ set(SOURCE_FILES
     "RendererOpenGL.cpp"
     "GridGraphGenerator.cpp"
     "ShaderObject.cpp"
+    "SingleThreadGraphDrawer.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

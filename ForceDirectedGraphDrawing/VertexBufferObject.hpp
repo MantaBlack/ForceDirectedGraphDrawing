@@ -14,4 +14,6 @@ public:
     void bind() override;
     void unbind() override;
     void release() override;
+
+    void update(GLfloat* vertices, GLsizeiptr size, GLenum usage);
 };

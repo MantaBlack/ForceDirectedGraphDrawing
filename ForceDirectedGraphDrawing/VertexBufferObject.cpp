@@ -28,3 +28,9 @@ void VertexBufferObject::release()
 {
     glDeleteBuffers(1, &m_id);
 }
+
+void VertexBufferObject::update(GLfloat* vertices, GLsizeiptr size, GLenum usage)
+{
+    bind();
+    glBufferData(GL_ARRAY_BUFFER, size, vertices, usage);
+}

@@ -43,8 +43,8 @@ void GridGraphGenerator::generate_edges(std::vector<GLuint>& edges) const
         // but we also skip one edge (there is no edge between
         // the last vertex of a row and the first vertex of the
         // next row
-        u = u + 2 - 1;
-        v = v + 2 - 1;
+        ++u;
+        ++v;
     }
 
     // left-right

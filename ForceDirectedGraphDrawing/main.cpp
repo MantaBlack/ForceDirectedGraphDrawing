@@ -1,9 +1,10 @@
-#include "RendererOpenGL.hpp"
 #include "GridGraphGenerator.hpp"
+#include "RendererOpenGL.hpp"
+#include "SingleThreadGraphDrawer.hpp"
 
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
 int main()
 {
@@ -12,8 +13,8 @@ int main()
     const int VIEWPORT_X = 0;
     const int VIEWPORT_Y = 0;
 
-    const std::size_t NUM_VERTICES_X = 2;
-    const std::size_t NUM_VERTICES_Y = 2;
+    const std::size_t NUM_VERTICES_X = 10;
+    const std::size_t NUM_VERTICES_Y = 10;
     const GLfloat MIN_POS = -1.f;
     const GLfloat MAX_POS = 1.f;
 
@@ -30,7 +31,7 @@ int main()
     const std::size_t DIM = 2;
     const std::size_t NUM_POINTS = NUM_VERTICES_X * NUM_VERTICES_Y * DIM;
 
-    for (std::size_t i = 0; i < NUM_POINTS; i += DIM)
+    /*for (std::size_t i = 0; i < NUM_POINTS; i += DIM)
     {
         std::cout << "{ " << vertices[i] << "," << vertices[i + 1] << " }" << std::endl;
     }
@@ -40,7 +41,9 @@ int main()
     for (std::size_t i = 0; i < edges.size(); i++)
     {
         std::cout << edges[i] << ", ";
-    }
+    }*/
+
+    SingleThreadGraphDrawer cpu_drawer(vertices, edges, 5.f, 1.5f, DIM);
 
     RendererOpenGL renderer_gl(WINDOW_WIDTH,
         WINDOW_HEGHT,
@@ -48,7 +51,8 @@ int main()
         VIEWPORT_X,
         VIEWPORT_Y,
         vertices,
-        edges);
+        edges,
+        cpu_drawer);
 
     renderer_gl.render();
 
