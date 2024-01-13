@@ -26,8 +26,10 @@ void GridGraphGenerator::generate_edges(std::vector<GLuint>& edges) const
     GLuint u = 0;
     GLuint v = 1;
 
+    // top-down
     for (std::size_t i = 0; i < m_num_vertices_y; i++)
     {
+        // lef-right
         for (std::size_t j = 1; j < m_num_vertices_x; j++)
         {
             edges.push_back(u);
@@ -37,15 +39,21 @@ void GridGraphGenerator::generate_edges(std::vector<GLuint>& edges) const
             ++v;
         }
 
+        // when we reach end of row, we jump to next row
+        // but we also skip one edge (there is no edge between
+        // the last vertex of a row and the first vertex of the
+        // next row
         u = u + 2 - 1;
         v = v + 2 - 1;
     }
 
+    // left-right
     for (std::size_t i = 0; i < m_num_vertices_x; i++)
     {
         u = i;
         v = u + m_num_vertices_x;
- 
+
+        // top-down
         for (std::size_t j = 1; j < m_num_vertices_y; j++)
         {
             edges.push_back(u);
