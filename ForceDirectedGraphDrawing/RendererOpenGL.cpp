@@ -109,9 +109,11 @@ void RendererOpenGL::render()
 
         vertices_vao.bind();
         glDrawElements(GL_POINTS, m_vertices.size(), GL_UNSIGNED_INT, 0);
+        vertices_vao.unbind();
 
         edges_vao.bind();
-        glDrawElements(GL_LINES, m_vertices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_LINES, m_indices.size(), GL_UNSIGNED_INT, 0);
+        edges_vao.unbind();
 
         glfwSwapBuffers(m_window);
 

@@ -41,14 +41,18 @@ void GridGraphGenerator::generate_edges(std::vector<GLuint>& edges) const
         v = v + 2 - 1;
     }
 
-    u = 0;
-    v = u + m_num_vertices_x;
-
     for (std::size_t i = 0; i < m_num_vertices_x; i++)
     {
+        u = i;
+        v = u + m_num_vertices_x;
+ 
         for (std::size_t j = 1; j < m_num_vertices_y; j++)
         {
+            edges.push_back(u);
+            edges.push_back(v);
 
+            u += m_num_vertices_x;
+            v += m_num_vertices_x;
         }
     }
 }
