@@ -12,8 +12,8 @@ int main()
     const int VIEWPORT_X = 0;
     const int VIEWPORT_Y = 0;
 
-    const std::size_t NUM_VERTICES_X = 1;
-    const std::size_t NUM_VERTICES_Y = 3;
+    const std::size_t NUM_VERTICES_X = 3;
+    const std::size_t NUM_VERTICES_Y = 4;
     const GLfloat MIN_POS = -1.f;
     const GLfloat MAX_POS = 1.f;
 
@@ -37,7 +37,12 @@ int main()
 
     std::cout << "# Indices: " << edges.size() << std::endl;
 
-    RendererOpenGL renderer_gl(WINDOW_WIDTH,
+    for (std::size_t i = 0; i < edges.size(); i++)
+    {
+        std::cout << edges[i] << ", ";
+    }
+
+    /*RendererOpenGL renderer_gl(WINDOW_WIDTH,
         WINDOW_HEGHT,
         "Force Directed Graph Drawing",
         VIEWPORT_X,
@@ -45,7 +50,7 @@ int main()
         vertices,
         edges);
 
-    renderer_gl.render();
+    renderer_gl.render();*/
 
     return 0;
 }

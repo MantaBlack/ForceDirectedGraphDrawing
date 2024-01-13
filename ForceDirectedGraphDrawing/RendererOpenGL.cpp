@@ -61,7 +61,7 @@ void RendererOpenGL::render()
 
     ShaderObject shader("vertex_shader.glsl", "fragment_shader.glsl");
 
-    // generate buffer objects for vertices
+    /* generate buffer objects for vertices */
     std::vector<GLuint> vertex_indices(m_vertices.size() / DIM);
 
     // generate indices to use all vertices for rendering points
@@ -82,6 +82,20 @@ void RendererOpenGL::render()
     vertices_vbo.unbind();
     vertices_ebo.unbind();
 
+    /* generate buffer objects for edges */
+    VertexArrayObject edges_vao;
+    edges_vao.bind();
+
+    VertexBufferObject edges_vbo(&m_vertices.front(), m_vertices.size() * sizeof(GLfloat), buffer_usage);
+
+    ElementBufferObject edges_ebo(&m_indices.front(), m_indices.size() * sizeof(GLuint), buffer_usage);
+
+    edges_vao.link_vertex_buffer(edges_vbo, 0, DIM, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+    edges_vao.unbind();
+    edges_vbo.unbind();
+    edges_ebo.unbind();
+
     while (!glfwWindowShouldClose(m_window))
     {
         // specify a default background color
@@ -94,9 +108,10 @@ void RendererOpenGL::render()
         shader.activate();
 
         vertices_vao.bind();
-
-        // use this function when drawing elements with an EBO
         glDrawElements(GL_POINTS, m_vertices.size(), GL_UNSIGNED_INT, 0);
+
+        edges_vao.bind();
+        glDrawElements(GL_LINES, m_vertices.size(), GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(m_window);
 
@@ -106,6 +121,10 @@ void RendererOpenGL::render()
     vertices_vao.release();
     vertices_vbo.release();
     vertices_ebo.release();
+
+    edges_vao.release();
+    edges_vbo.release();
+    edges_ebo.release();
 
     glfwDestroyWindow(m_window);
 
