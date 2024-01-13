@@ -10,6 +10,8 @@
 class RendererOpenGL : public IRenderer
 {
 private:
+    const GLuint DIM = 2;
+
     int m_width;
     int m_height;
     std::string m_title;

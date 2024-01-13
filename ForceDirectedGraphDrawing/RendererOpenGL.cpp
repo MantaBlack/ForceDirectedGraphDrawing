@@ -63,7 +63,7 @@ void RendererOpenGL::render()
 
     ElementBufferObject ebo(&m_indices.front(), m_indices.size(), buffer_usage);
 
-    vao.link_vertex_buffer(vbo, 0, 1, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    vao.link_vertex_buffer(vbo, 0, DIM, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
     vao.unbind();
     vbo.unbind();

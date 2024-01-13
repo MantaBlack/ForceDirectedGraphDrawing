@@ -21,11 +21,13 @@ set(HEADER_FILES
     ${GLAD_INCLUDE}/glad/glad.h
     ${GLFW_INCLUDE}/GLFW/glfw3.h
     "IBufferObject.hpp"
+    "IGraphGenerator.hpp"
     "IRenderer.hpp"
     "ElementBufferObject.hpp"
     "VertexBufferObject.hpp"
     "VertexArrayObject.hpp"
     "RendererOpenGL.hpp"
+    "GridGraphGenerator.hpp"
 )
 
 set(SOURCE_FILES
@@ -35,6 +37,7 @@ set(SOURCE_FILES
     "VertexBufferObject.cpp"
     "VertexArrayObject.cpp"
     "RendererOpenGL.cpp"
+    "GridGraphGenerator.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
