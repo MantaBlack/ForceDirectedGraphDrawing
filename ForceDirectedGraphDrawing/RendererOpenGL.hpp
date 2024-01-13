@@ -21,6 +21,9 @@ private:
 
     GLFWwindow* m_window;
 
+    void create_window();
+    void set_viewport();
+
 public:
     RendererOpenGL(int width,
         int height,
@@ -36,7 +39,7 @@ public:
         m_lower_left_y(lower_left_y),
         m_vertices(vertices),
         m_indices(indices),
-        m_window(nullptr)
+        m_window(NULL)
     {}
 
     ~RendererOpenGL();

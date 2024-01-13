@@ -1,6 +1,6 @@
 #include "VertexArrayObject.hpp"
 
-VertexArrayObject::VertexArrayObject(VertexBufferObject& vbo, GLuint layout)
+VertexArrayObject::VertexArrayObject()
 {
     glGenVertexArrays(1, &m_id);
 }

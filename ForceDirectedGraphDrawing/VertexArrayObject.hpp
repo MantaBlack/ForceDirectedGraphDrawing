@@ -6,7 +6,7 @@
 class VertexArrayObject : public IBufferObject
 {
 public:
-    VertexArrayObject(VertexBufferObject& vbo, GLuint layout);
+    VertexArrayObject();
 
     ~VertexArrayObject();
 

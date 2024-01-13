@@ -4,6 +4,7 @@
 
 class VertexBufferObject : public IBufferObject
 {
+public:
     VertexBufferObject(GLfloat* vertices,
         GLsizeiptr size,
         GLenum usage);
