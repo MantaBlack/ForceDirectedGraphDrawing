@@ -21,6 +21,15 @@ void SingleThreadGraphDrawerGL::calculate_displacements()
             GLfloat disp_x = (diff_x / dist) * ((m_spring_const * m_spring_const) / dist);
             GLfloat disp_y = (diff_y / dist) * ((m_spring_const * m_spring_const) / dist);
 
+            m_displacements[p] += disp_x;
+            m_displacements[p + 1] += disp_y;
+
+            diff_x = m_vertices[q] - my_pos_x;
+            diff_x = m_vertices[q + 1] - my_pos_y;
+
+            disp_x = (diff_x / dist) * ((m_spring_const * m_spring_const) / dist);
+            disp_y = (diff_y / dist) * ((m_spring_const * m_spring_const) / dist);
+
             m_displacements[q] += disp_x;
             m_displacements[q + 1] += disp_y;
         }
