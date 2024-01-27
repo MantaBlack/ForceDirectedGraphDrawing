@@ -21,7 +21,7 @@ void SingleThreadGraphDrawer::calculate_displacements()
             GLfloat disp_x = (diff_x / dist) * ((m_spring_const * m_spring_const) / dist);
             GLfloat disp_y = (diff_y / dist) * ((m_spring_const * m_spring_const) / dist);
 
-            m_displacements[q]     += disp_x;
+            m_displacements[q] += disp_x;
             m_displacements[q + 1] += disp_y;
         }
     }
@@ -30,12 +30,12 @@ void SingleThreadGraphDrawer::calculate_displacements()
 void SingleThreadGraphDrawer::update_displacements()
 {
     // the vector of edges represent pairs of connected vertices
-    for (std::size_t i = 0; i < m_edges.size(); i+=2)
+    for (std::size_t i = 0; i < m_edges.size(); i += 2)
     {
         GLfloat vertex_u_x = m_vertices[m_edges[i]];
         GLfloat vertex_u_y = m_vertices[m_edges[i] + 1];
 
-        GLfloat vertex_v_x = m_vertices[m_edges[i+1]];
+        GLfloat vertex_v_x = m_vertices[m_edges[i + 1]];
         GLfloat vertex_v_y = m_vertices[m_edges[i + 1] + 1];
 
         GLfloat diff_x = vertex_u_x - vertex_v_x;
@@ -46,10 +46,10 @@ void SingleThreadGraphDrawer::update_displacements()
         GLfloat disp_x = (diff_x / dist) * ((dist * dist) / m_spring_const);
         GLfloat disp_y = (diff_y / dist) * ((dist * dist) / m_spring_const);
 
-        m_displacements[m_edges[i]]     -= disp_x;
+        m_displacements[m_edges[i]] -= disp_x;
         m_displacements[m_edges[i] + 1] -= disp_y;
 
-        m_displacements[m_edges[i + 1]]     += disp_x;
+        m_displacements[m_edges[i + 1]] += disp_x;
         m_displacements[m_edges[i + 1] + 1] += disp_y;
     }
 }
@@ -63,7 +63,7 @@ void SingleThreadGraphDrawer::calculate_vertex_positions()
 
         GLfloat dist = sqrt(disp_x * disp_x + disp_y * disp_y);
 
-        m_vertices[p]     += (disp_x * (m_dampening / dist));
+        m_vertices[p] += (disp_x * (m_dampening / dist));
         m_vertices[p + 1] += (disp_y * (m_dampening / dist));
     }
 }

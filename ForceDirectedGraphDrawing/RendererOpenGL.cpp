@@ -119,9 +119,6 @@ void RendererOpenGL::render()
         glfwPollEvents();
 
         m_graph_drawer.draw_graph(m_vertices);
-
-        vertices_vbo.update(&m_vertices.front(), m_vertices.size() * sizeof(GLfloat), buffer_usage);
-        vertices_vao.link_vertex_buffer(vertices_vbo, 0, DIM, GL_FLOAT, GL_FALSE, 0, (void*)0);
     }
 
     vertices_vao.release();

@@ -15,8 +15,8 @@ int main()
 
     const std::size_t NUM_VERTICES_X = 10;
     const std::size_t NUM_VERTICES_Y = 10;
-    const GLfloat MIN_POS = -1.f;
-    const GLfloat MAX_POS = 1.f;
+    const GLfloat MIN_POS = -.5f;
+    const GLfloat MAX_POS = .5f;
 
     GridGraphGenerator grid_graph(NUM_VERTICES_X,
         NUM_VERTICES_Y,
@@ -31,19 +31,7 @@ int main()
     const std::size_t DIM = 2;
     const std::size_t NUM_POINTS = NUM_VERTICES_X * NUM_VERTICES_Y * DIM;
 
-    /*for (std::size_t i = 0; i < NUM_POINTS; i += DIM)
-    {
-        std::cout << "{ " << vertices[i] << "," << vertices[i + 1] << " }" << std::endl;
-    }
-
-    std::cout << "# Indices: " << edges.size() << std::endl;
-
-    for (std::size_t i = 0; i < edges.size(); i++)
-    {
-        std::cout << edges[i] << ", ";
-    }*/
-
-    SingleThreadGraphDrawer cpu_drawer(vertices, edges, 5.f, 1.5f, DIM);
+    SingleThreadGraphDrawer cpu_drawer(vertices, edges, 10.f, 1.5f, DIM);
 
     RendererOpenGL renderer_gl(WINDOW_WIDTH,
         WINDOW_HEGHT,
