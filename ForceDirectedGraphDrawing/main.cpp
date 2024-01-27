@@ -13,8 +13,8 @@ int main()
     const int VIEWPORT_X = 0;
     const int VIEWPORT_Y = 0;
 
-    const std::size_t NUM_VERTICES_X = 10;
-    const std::size_t NUM_VERTICES_Y = 10;
+    const std::size_t NUM_VERTICES_X = 5;
+    const std::size_t NUM_VERTICES_Y = 5;
     const GLfloat MIN_POS = -.5f;
     const GLfloat MAX_POS = .5f;
 

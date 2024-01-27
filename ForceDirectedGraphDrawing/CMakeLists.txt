@@ -29,6 +29,12 @@ set(SFML_LINK_LIBS
 set(HEADER_FILES
     ${GLAD_INCLUDE}/glad/glad.h
     ${GLFW_INCLUDE}/GLFW/glfw3.h
+    ${SFML_INCLUDE}/SFML/System.hpp
+    ${SFML_INCLUDE}/SFML/Graphics.hpp
+    ${SFML_INCLUDE}/SFML/Window.hpp
+    ${SFML_INCLUDE}/SFML/Graphics/Vertex.hpp
+    ${SFML_INCLUDE}SFML/System/Vector2.hpp
+    ${SFML_INCLUDE}
     "IBufferObject.hpp"
     "IGraphGenerator.hpp"
     "IRenderer.hpp"
@@ -39,7 +45,10 @@ set(HEADER_FILES
     "GridGraphGenerator.hpp"
     "ShaderObject.hpp"
     "IGraphDrawer.hpp"
+    "IGraphDrawer2D.hpp"
     "SingleThreadGraphDrawerGL.hpp"
+    "RendererSFML.hpp"
+    "SingleThreadGraphDrawer2D.hpp"
 )
 
 set(SOURCE_FILES
@@ -52,6 +61,8 @@ set(SOURCE_FILES
     "GridGraphGenerator.cpp"
     "ShaderObject.cpp"
     "SingleThreadGraphDrawerGL.cpp"
+    "RendererSFML.cpp"
+    "SingleThreadGraphDrawer2D.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

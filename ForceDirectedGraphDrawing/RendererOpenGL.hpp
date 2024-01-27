@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IRenderer.hpp"
 #include "IGraphDrawer.hpp"
+#include "IRenderer.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
