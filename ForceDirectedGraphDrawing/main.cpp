@@ -1,6 +1,6 @@
 #include "GridGraphGenerator.hpp"
 #include "RendererOpenGL.hpp"
-#include "SingleThreadGraphDrawer.hpp"
+#include "SingleThreadGraphDrawerGL.hpp"
 
 #include <iostream>
 #include <string>
@@ -31,7 +31,7 @@ int main()
     const std::size_t DIM = 2;
     const std::size_t NUM_POINTS = NUM_VERTICES_X * NUM_VERTICES_Y * DIM;
 
-    SingleThreadGraphDrawer cpu_drawer(vertices, edges, 10.f, 1.5f, DIM);
+    SingleThreadGraphDrawerGL cpu_drawer(vertices, edges, 10.f, 1.5f, DIM);
 
     RendererOpenGL renderer_gl(WINDOW_WIDTH,
         WINDOW_HEGHT,

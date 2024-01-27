@@ -13,9 +13,18 @@ set(PROJECT_NAME "ForceDirectedGraphDrawing")
 
 project (${PROJECT_NAME})
 
-set(GLAD_INCLUDE "D:/TOOLS/GLAD/include/")
-set(GLFW_INCLUDE "D:/TOOLS/GLFW/include/")
-set(GLFW_LIB "D:/TOOLS/GLFW/lib/")
+set(GLAD_INCLUDE "$ENV{TOOLS_DIR}/GLAD/include/")
+set(GLFW_INCLUDE "$ENV{TOOLS_DIR}/GLFW/include/")
+set(GLFW_LIB "$ENV{TOOLS_DIR}/GLFW/lib/")
+set(SFML_INCLUDE "$ENV{SFML_DIR}/include/")
+set(SFML_LIB "$ENV{SFML_DIR}/lib/")
+
+set(SFML_LINK_LIBS
+    sfml-graphics-d.lib
+    sfml-window-d.lib
+    sfml-system-d.lib
+    freetype.lib
+)
 
 set(HEADER_FILES
     ${GLAD_INCLUDE}/glad/glad.h
@@ -30,7 +39,7 @@ set(HEADER_FILES
     "GridGraphGenerator.hpp"
     "ShaderObject.hpp"
     "IGraphDrawer.hpp"
-    "SingleThreadGraphDrawer.hpp"
+    "SingleThreadGraphDrawerGL.hpp"
 )
 
 set(SOURCE_FILES
@@ -42,7 +51,7 @@ set(SOURCE_FILES
     "RendererOpenGL.cpp"
     "GridGraphGenerator.cpp"
     "ShaderObject.cpp"
-    "SingleThreadGraphDrawer.cpp"
+    "SingleThreadGraphDrawerGL.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
@@ -51,13 +60,13 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 find_package(OpenGL REQUIRED)
 
 # specify directories for external header files
-target_include_directories(${PROJECT_NAME} PRIVATE ${GLAD_INCLUDE} ${GLFW_INCLUDE})
+target_include_directories(${PROJECT_NAME} PRIVATE ${GLAD_INCLUDE} ${GLFW_INCLUDE} ${SFML_INCLUDE})
 
 # specify directories for external libraries
-target_link_directories(${PROJECT_NAME} PRIVATE ${GLFW_LIB})
+target_link_directories(${PROJECT_NAME} PRIVATE ${GLFW_LIB} ${SFML_LIB})
 
 # specify libraries to link
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw3.lib ${OPENGL_gl_LIBRARY})
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw3.lib ${OPENGL_gl_LIBRARY} ${SFML_LINK_LIBS})
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)

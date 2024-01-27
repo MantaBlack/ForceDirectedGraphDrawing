@@ -1,8 +1,8 @@
-#include "SingleThreadGraphDrawer.hpp"
+#include "SingleThreadGraphDrawerGL.hpp"
 
 #include <algorithm>
 
-void SingleThreadGraphDrawer::calculate_displacements()
+void SingleThreadGraphDrawerGL::calculate_displacements()
 {
     std::fill(m_displacements.begin(), m_displacements.end(), 0.f);
 
@@ -27,7 +27,7 @@ void SingleThreadGraphDrawer::calculate_displacements()
     }
 }
 
-void SingleThreadGraphDrawer::update_displacements()
+void SingleThreadGraphDrawerGL::update_displacements()
 {
     // the vector of edges represent pairs of connected vertices
     for (std::size_t i = 0; i < m_edges.size(); i += 2)
@@ -54,7 +54,7 @@ void SingleThreadGraphDrawer::update_displacements()
     }
 }
 
-void SingleThreadGraphDrawer::calculate_vertex_positions()
+void SingleThreadGraphDrawerGL::calculate_vertex_positions()
 {
     for (std::size_t p = 0; p < m_num_vertices * m_dims; p += m_dims)
     {
@@ -68,7 +68,7 @@ void SingleThreadGraphDrawer::calculate_vertex_positions()
     }
 }
 
-void SingleThreadGraphDrawer::draw_graph(std::vector<GLfloat>& vertices)
+void SingleThreadGraphDrawerGL::draw_graph(std::vector<GLfloat>& vertices)
 {
     calculate_displacements();
     update_displacements();

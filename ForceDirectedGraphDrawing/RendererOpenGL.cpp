@@ -3,7 +3,7 @@
 #include "VertexArrayObject.hpp"
 #include "VertexBufferObject.hpp"
 #include "ShaderObject.hpp"
-#include "SingleThreadGraphDrawer.hpp"
+#include "SingleThreadGraphDrawerGL.hpp"
 
 #include <algorithm>
 

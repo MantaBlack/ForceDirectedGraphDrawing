@@ -4,7 +4,7 @@
 
 #include <vector>
 
-class SingleThreadGraphDrawer : public IGraphDrawer
+class SingleThreadGraphDrawerGL : public IGraphDrawer
 {
 private:
     std::vector<GLfloat> m_vertices;
@@ -20,7 +20,7 @@ private:
     void calculate_vertex_positions();
 
 public:
-    SingleThreadGraphDrawer(std::vector<GLfloat> vertices,
+    SingleThreadGraphDrawerGL(std::vector<GLfloat> vertices,
         std::vector<GLuint> edges,
         GLfloat spring_const,
         GLfloat dampening,
@@ -34,7 +34,7 @@ public:
         m_displacements(vertices.size())
     {}
 
-    ~SingleThreadGraphDrawer()
+    ~SingleThreadGraphDrawerGL()
     {}
 
     void draw_graph(std::vector<GLfloat>& vertices) override;
